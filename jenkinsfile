@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git 'https://github.com/your-repo/hello-world-python.git'
+                git 'https://github.com/santoshnirwatla/rudra-helloworld.git'
             }
         }
         stage('Install dependencies') {
@@ -13,9 +13,9 @@ pipeline {
         }
         stage('Deploy to GCP VM') {
             steps {
-                sshagent(credentials: ['gcp-ssh-key']) {
+                sshagent(credentials: ['gcp-key']) {
                     sh '''
-                        ssh -o StrictHostKeyChecking=no user@[YOUR_VM_IP] << EOF
+                        ssh -o StrictHostKeyChecking=no user@[34.100.189.66] << EOF
                         cd hello-world-python
                         pip install -r requirements.txt
                         nohup python app.py &
